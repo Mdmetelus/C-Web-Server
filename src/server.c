@@ -88,12 +88,20 @@ void get_d20(int fd)
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+    char data[20];
+    srand(time(NULL)); 
+    
+    /*to intialise the PRNG(Pseudo-random number generator) */
+    unsigned int randomNumber = (rand() % 20) + 1;
+
+    snprintf(data, sizeof(data), "%d", randomNumber);
 
     // Use send_response() to send it back as text/plain data
 
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+    send_response(fd, "HTTP/1.1 200 OK", "text/plain", data, strlen(data));
 }
 
 /**
