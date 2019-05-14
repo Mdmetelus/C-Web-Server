@@ -52,7 +52,7 @@ int send_response(int fd, char *header, char *content_type, void *body, int cont
 {
     const int max_response_size = 262144;
     char response[max_response_size];
-    // time_t date_time = time(NULL);
+    time_t date_time = time(NULL);
     // Build HTTP response and store it in response
 
     ///////////////////
@@ -66,7 +66,7 @@ int send_response(int fd, char *header, char *content_type, void *body, int cont
                                             "\n",
                                   header, asctime(gmtime(&date_time)), content_length, content_type);
     // Send it all!
-    int rv = send(fd, response, response_length, 0);
+    // int rv = send(fd, response, response_length, 0);
     memcpy(response + response_length, body, content_length);
     int rv = send(fd, response, response_length + content_length, 0);
 
