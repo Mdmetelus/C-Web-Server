@@ -173,8 +173,13 @@ void handle_http_request(int fd, struct cache *cache)
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+     char req_type[8];
+    char req_path[1024];
+    char req_protocol[128];
 
     // Read the first two components of the first line of the request 
+     sscanf(request, "%s %s %s", req_type, req_path, req_protocol);
+    printf("request: %s request path: %s request protocol: %s\n", req_type, req_path, req_protocol);
  
     // If GET, handle the get endpoints
 
