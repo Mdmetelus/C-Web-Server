@@ -137,6 +137,15 @@ void cache_put(struct cache *cache, char *path, char *content_type, void *conten
     if (cache->cur_size > cache->max_size)
     {
         
+        struct cache_entry *last_tail = dllist_remove_tail(cache);
+        
+        hashtable_delete(cache->index, last_tail->path);
+        
+        free_entry(last_tail);
+        
+        if (cache->cur_size > cache->max_size)
+        {
+            cache->cur_size--;
         }
     }
 }
