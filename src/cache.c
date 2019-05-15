@@ -125,6 +125,20 @@ void cache_put(struct cache *cache, char *path, char *content_type, void *conten
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+    
+    struct cache_entry *new = alloc_entry(path, content_type, content, content_length);
+    
+    dllist_insert_head(cache, new);
+    
+    hashtable_put(cache->index, path, new);
+    
+    cache->cur_size++;
+    
+    if (cache->cur_size > cache->max_size)
+    {
+        
+        }
+    }
 }
 
 /**
