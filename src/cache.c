@@ -19,6 +19,8 @@ struct cache_entry *alloc_entry(char *path, char *content_type, void *content, i
     ce->content_length = content_length;
     ce->content = malloc(content_length);
     memcpy(ce->content, content, content_length)
+    ce->prev = NULL;
+    ce->next = NULL;
 
     return ce;
 
@@ -34,7 +36,8 @@ void free_entry(struct cache_entry *entry)
     ///////////////////
     free(entry->content_type);
     free(entry->content);
-    free(content->path);
+    free(entry->path);
+    free(entry);
 }
 
 /**
@@ -171,4 +174,5 @@ struct cache_entry *cache_get(struct cache *cache, char *path)
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+        
 }
