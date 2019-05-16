@@ -12,6 +12,16 @@ struct cache_entry *alloc_entry(char *path, char *content_type, void *content, i
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+    struct cashe_entry *ce = malloc(sizeof *ce);
+
+    ce->path = strdup(path);
+    ce->content_type= strdup(content_type):
+    ce->content_length = content_length;
+    ce->content = malloc(content_length);
+    memcpy(ce->content, content, content_length)
+
+    return ce;
+
 }
 
 /**
