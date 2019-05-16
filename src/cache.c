@@ -110,6 +110,17 @@ struct cache *cache_create(int max_size, int hashsize)
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+
+    struct cache *nc = malloc(sizeof(struct cache));
+    //  doubly-linked list stuff
+    nc->head = NULL;
+    nc->tail = NULL;
+
+    nc->index = hashtable_create(hashsize, NULL);
+    nc->max_size = max_size;
+    nc->cur_size = 0;
+
+return nc;
 }
 
 void cache_free(struct cache *cache)
@@ -174,5 +185,14 @@ struct cache_entry *cache_get(struct cache *cache, char *path)
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
-        
+    struct cache_entry *entry = hashtable_get(cache->index, path);
+    
+    if (entry == NULL)
+    {
+        return NULL;
+    }
+    
+    dllist_move_to_head(cache, entry);
+    
+    return entry;
 }
