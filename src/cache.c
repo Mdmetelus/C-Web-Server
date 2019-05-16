@@ -12,7 +12,7 @@ struct cache_entry *alloc_entry(char *path, char *content_type, void *content, i
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
-    struct cashe_entry *ce = malloc(sizeof(struct cache_entry));
+    struct cache_entry *ce = malloc(sizeof(struct cache_entry));
 
     ce->path = strdup(path);
     ce->content_type = strdup(content_type);
@@ -34,9 +34,9 @@ void free_entry(struct cache_entry *entry)
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+    free(entry->path);
     free(entry->content_type);
     free(entry->content);
-    free(entry->path);
     free(entry);
 }
 
