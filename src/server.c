@@ -209,6 +209,10 @@ void handle_http_request(int fd, struct cache *cache)
         {
             get_d20(fd);
         }
+        else if (strcmp(req_path, "/") == 0) 
+        {
+                 resp_404(fd);
+        }
         else
         {
             // Otherwise serve the requested file by calling get_file()
